@@ -65,7 +65,7 @@
     (lint-order-comp order)
     (domap lint-order-comp order)))
 
-(def- sing-ops #{"=" "!=" "<" "<=" ">" ">=" "like" "not-like"})
+(def- sing-ops #{"=" "!=" "<" "<=" ">" ">=" "=~" "!~"})
 (def- doub-ops #{"><" ">=<" "><=" ">=<="})
 (def- conj-ops #{"and" "or"})
 (def- incl-ops #{"in" "not-in"})

@@ -59,11 +59,11 @@
 (deftest "find: not by ids"
 	(assert-find #{r4 r2} db1 "elems" {"where" ["not-in" "id" [1 3 5 6]]}))
 
-(deftest "find: by like"
-	(assert-find #{r1 r2 r3 r4 r5} db1 "elems" {"where" ["like" "tp" "a|b"]}))
+(deftest "find: by regex"
+	(assert-find #{r1 r2 r3 r4 r5} db1 "elems" {"where" ["=~" "tp" "a|b"]}))
 
-(deftest "find: by not-like"
-	(assert-find [r6] db1 "elems" {"where" ["not-like" "tp" "a|b"]}))
+(deftest "find: by !regex"
+	(assert-find [r6] db1 "elems" {"where" ["!~" "tp" "a|b"]}))
 
 (deftest "find: by simple ad-hoc pred"
   (assert-find [r4] db1 "elems" {"where" ["=" "lt" "e"]}))

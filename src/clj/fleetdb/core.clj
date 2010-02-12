@@ -152,7 +152,7 @@
   #{"<" "<=" ">" ">=" "><" ">=<" "><=" ">=<="})
 
 (def- other-op?
-  #{"!=" "in" "not-in" "or" "like" "not-like"})
+  #{"!=" "in" "not-in" "or" "=~" "!~"})
 
 (defn- cond-low-high [op v]
   (condp = op
@@ -262,8 +262,8 @@
    "<=" #(Compare/lte %1 %2)
    ">"  #(Compare/gt  %1 %2)
    ">=" #(Compare/gte %1 %2)
-   "like" (fn [x y] (re-seq (re-pattern y) x))
-   "not-like" (fn [x y] (not (re-seq (re-pattern y) x)))})
+   "=~" (fn [x y] (re-seq (re-pattern y) x))
+   "!~" (fn [x y] (not (re-seq (re-pattern y) x)))})
 
 (def- doub-op-fns
   {"><"   [(sing-op-fns ">" ) (sing-op-fns "<" )]
