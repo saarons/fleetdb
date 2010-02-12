@@ -262,8 +262,8 @@
    "<=" #(Compare/lte %1 %2)
    ">"  #(Compare/gt  %1 %2)
    ">=" #(Compare/gte %1 %2)
-   "=~" (fn [x y] (re-seq (re-pattern (str y)) x))
-   "!~" (fn [x y] (not (re-seq (re-pattern (str y)) x)))})
+   "=~" #(re-seq (re-pattern (str %2)) %1)
+   "!~" #(not (re-seq (re-pattern (str %2)) %1))})
 
 (def- doub-op-fns
   {"><"   [(sing-op-fns ">" ) (sing-op-fns "<" )]
