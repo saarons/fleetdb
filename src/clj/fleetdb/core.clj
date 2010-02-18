@@ -252,6 +252,9 @@
 
 ;; Find execution
 
+(defn- regex-match [attribute value]
+  (re-seq (re-pattern (str value)) attribute))
+
 (def- conj-op-fns
   {"and" and? "or" or?})
 
@@ -262,8 +265,8 @@
    "<=" #(Compare/lte %1 %2)
    ">"  #(Compare/gt  %1 %2)
    ">=" #(Compare/gte %1 %2)
-   "=~" #(re-seq (re-pattern (str %2)) %1)
-   "!~" #(not (re-seq (re-pattern (str %2)) %1))})
+   "=~" #(regex-match %1 %2)
+   "!~" #(not (regex-match %1 %2))})
 
 (def- doub-op-fns
   {"><"   [(sing-op-fns ">" ) (sing-op-fns "<" )]
